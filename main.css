@@ -1,0 +1,54 @@
+body{
+    background:#DCF5FF;
+    margin:0;
+    height:100vh;
+    display:grid;
+    justify-items:center;
+    align-items:center;
+    font-family:'Nunito', 'sans-serif';
+}
+
+.container{
+
+    width:30%;
+    border-radius:10px;
+
+}
+.inner {
+    background:yellowgreen;
+    padding:1em;
+    border-radius:10px;
+    width:calc(100% - 2em);
+    clip-path: circle(10% at 90% 22%);
+    transition:all .5s ease-in-out;
+    cursor:pointer;
+}
+
+span{
+    font-weight:800;
+    font-size: 1rem;
+    float: right;
+    position:relative;
+    color:white;
+    padding-right:4%;
+    transition:color .3s ease;
+}
+
+.inner:hover span {
+    color:rgba(255,255,25,0);
+}
+.inner:hover{
+    clip-path:circle(75%);
+    background:#00B6FF;
+}
+
+h1{
+    color:white;
+    margin:0;
+}
+
+p{
+    color:white;
+    font-size:.8rem;
+}
+
