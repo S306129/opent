@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        
+        function calc(){
+
+            var inputList={
+                num1: document.querySelector('.num1'),
+                num2: document.querySelector('.num2'),
+                result: document.querySelector('.result'),
+                }
+
+            var calcList = document.querySelectorAll('.calc');
+            
+            
+           /* 
+                
+                if (parseInt(inputList.num1.value)+1 == "NaN"|| parseInt(inputList.num2.value)+1 =="NaN"){
+                alert("숫자를 입력하세요.");
+
+                ---> 입력한 값이 문자열인지 숫자열인지 체크하기
+                문제점 : NaN은 equaility(==)에 의존할 수 없다.
+                따라서 isNaN(value) 함수를 사용해야 함
+
+            */ 
+
+            if (isNaN(parseInt(inputList.num1.value)+1)|| isNaN(parseInt(inputList.num2.value)+1)){
+                alert("숫자를 입력하세요.");
+            }else {
+
+                if (calcList[0].checked){
+                    inputList.result.value = parseInt(inputList.num1.value)+parseInt(inputList.num2.value);
+                }else if(calcList[1].checked){
+                    inputList.result.value = parseInt(inputList.num1.value)-parseInt(inputList.num2.value);
+                }else if(calcList[2].checked){
+                    inputList.result.value = parseInt(inputList.num1.value)*parseInt(inputList.num2.value);
+                }else if(calcList[3].checked){
+                    inputList.result.value = Math.round(parseInt(inputList.num1.value)/parseInt(inputList.num2.value));
+                }
+            }
+
+        }
+
+        function erase(){
+            var resetList=document.querySelectorAll(".resetInput");
+
+            for(i=0; i<resetList.length; i++){
+                resetList[i].value="";
+            }
+        }
+
+        
+    </script>
+</head>
+<body>
+    <div>
+        <lable>숫자1: </lable>
+        <input type="text" class="num1 resetInput"/><br/>
+        <lable>숫자2: </lable>
+        <input type="text" class="num2 resetInput"/>
+    </div>
+    <div>
+        <lable>연산: </lable>
+        <lable>+</lable><input type="radio" name="calc" class="calc"/>
+        <lable>-</lable><input type="radio" name="calc" class="calc"/>
+        <lable>*</lable><input type="radio" name="calc" class="calc"/>
+        <lable>/</lable><input type="radio" name="calc" class="calc"/><br/>
+        <lable>결과: </lable>
+        <input type="text" class="result resetInput" readonly="readonly"/><br/>
+        <input type="button" value="계산" onClick="calc()"/> <input type="button" value="지우개" onClick="erase()"/>
+    </div>
+</body>
+</html>
