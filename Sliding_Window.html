@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script type="text/javascript" src="jquery-1.12.4.js"></script>
+    <title>Sliding Window</title>
+
+    <style>
+        *{margin:0; padding:0;}
+        body {
+            min-width:1000px;
+            display:grid;
+            justify-items:center;
+            align-items:center;
+        }
+        h1{font-size:2rem; padding-top:100px;}
+        .screen {
+            margin-top:50px;
+            width:40%;
+            height:400px;
+            border: 3px solid black;
+            overflow:hidden;
+            position:relative;
+        }
+        ul{
+            position:relative;
+            width:400%;
+            height:100%;
+        }
+
+        .circleWrap {width:50%; position:absolute; bottom:5%; left:30%;}
+        .circleWrap>div {
+            width:8%; margin-right:15%;
+            height:20px;
+            border:2px solid orange;
+            border-radius:20px;
+            background-color: white;
+            float:left;
+        }
+
+        li {
+            list-style:none;
+            width:25%;
+            float:left;
+            height:100%;
+        }
+        .blue {background-color:royalblue;}
+        .purple {background-color:mediumpurple;}
+        .green {background-color:darkgreen;}
+        .yellow {background-color:tan;}
+
+        .hiddenBtn  {width:1px; height:1px; position:absolute; top:0; left:-9999px;}
+
+        
+        /*이벤트 클래스*/
+
+        .circle.selected {
+            background-color:orange;
+        }
+    </style>
+    <script>
+        
+        $(function(){
+
+            $('.film').prepend($('.scene:last'));
+            $('.film').css({'marginLeft':'-100%'});
+            $('.hiddenBtn').click(function(){
+                $('.film').animate({'marginLeft':'-=100%'},1000,'swing',function(){
+                    $('.film').append($('.scene:first')).css({'marginLeft':'-100%'});
+                    var btnList = document.querySelectorAll('.circle');
+                    var btnSelected = $('.selected').index();
+                    $('.circle').removeClass('selected');
+                    if(btnSelected === 3){
+                            btnSelected = 0;
+                            $('.circle:eq('+(btnSelected)+')').addClass('selected');
+
+                    }else{
+                        $('.circle:eq('+(btnSelected+1)+')').addClass('selected');
+                    }
+
+
+                    
+                });
+            });
+
+            var autoSelect = setInterval(function(){$('.hiddenBtn').click();},1500);
+        });
+
+
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Sliding Window</h1>
+    </header>
+    <div class="screen">
+        <ul class="film">
+            <li class="scene blue"></li>
+            <li class="scene purple"></li>
+            <li class="scene green"></li>
+            <li class="scene yellow"></li>
+        </ul>
+        <div class="circleWrap">
+            <div class="circle selected"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="hiddenBtn"></div>
+    </div>
+</body>
+</html>
