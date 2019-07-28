@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fetch</title>
+    <style>
+        h2{
+            text-align:center;
+            padding:2rem 0;
+        }
+        .img-wrapper{
+            padding:2rem 0;
+            width:40%; margin:0 auto;
+        }
+        img{
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+    <h2>fetch</h2>
+    <div class="img-wrapper">
+        <img src="" alt="lalaland" class="lalaimg">
+    </div>
+    <div class="img-wrapper">
+        <img src="" alt="cat" class="catimg">
+    </div>
+    <script>
+        fetch('2.jpg').then(response =>{
+            console.log(response);
+            return response.url;
+        }).then(url =>{
+
+            document.querySelector('.lalaimg').src =url;
+        }).catch(error =>{
+            console.error(error);
+        });
+
+
+        /*------async & await-------*/
+
+        async function catImg(){
+           const response = await fetch('1.gif');
+           // wait to result of fetch and then store the result in variable
+            const url = await response.url;
+            document.querySelector('.catimg').src =url;
+        }
+        catImg();
+
+
+    </script>
+</body>
+</html>
